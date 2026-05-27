@@ -1,0 +1,67 @@
+.채팅__목록 {
+   display: flex;
+   width: 100%;
+   height: 100%;
+}
+
+ .채팅__목록__프로필 {
+   display: flex;
+   width: 100%;
+   height: 70px;
+   margin: 10px 0;
+   align-items: center;
+ }
+
+ .채팅__목록__프로필 img {
+   width: 60px;
+   height: 60px;
+   border-radius: 20px;
+   margin-right: 20px;
+   border: 1px solid rgba(0, 0, 0, 1);
+ }
+
+ .채팅__목록__프로필-내용 {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+ }
+
+ .채팅__목록__프로필-내용 span {
+   display: block;
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+ }
+
+.채팅__목록__프로필-내용 p {
+   display: block;
+   font-size: 14px;
+   color: rgba(0, 0, 0, 0.5);
+}
+
+.채팅__목록__프로필-알림 {
+  position: relative;
+  width: 70px;
+  height: 50px;
+}
+
+.채팅__목록__프로필-알림 > span {
+  color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.채팅__목록__프로필-알림 > div {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 20px;
+   height: 20px;
+   background-color: tomato;
+   border-radius: 50%;
+   color: white;
+   position: absolute;
+   bottom: 0;
+   right: 0;
+}

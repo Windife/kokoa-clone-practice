@@ -1,0 +1,233 @@
+/* DONT DELETE THIS */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
+/* WRITE YOUR CODE BELOW */
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+body {
+    font-family: "Google Sans", sans-serif;
+}
+
+.main {
+    display: flex;
+    flex-wrap: wrap;
+    width: 300px;
+    height: 800px;
+    border: solid 5px teal;
+    justify-self: center;
+    justify-content: space-evenly;
+}
+
+.header {
+    display: flex;
+    margin-top: 10px;
+    margin: 10px;
+    width: 300px;
+}
+
+.header__div1 {
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    margin: 10px;
+}
+
+.header__div2 {
+    display: flex;
+    align-items: center;
+    font-size: x-large;
+    margin-left: 80px;
+}
+
+
+.titlediv {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    margin: 10px;
+}
+
+.titlediv__div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 90px;
+    height: 90px;
+    background-color: #FFB413;
+    border: solid 2px black;
+    border-radius: 10%;
+    margin: 10px;
+}
+
+
+.titlediv__span1 {
+    display: block;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.titlediv__span2 {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+.buttondiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 300px;
+    height: 100px;
+}
+
+.buttondiv__playdiv { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 50px;
+    border: solid 2px black;
+    font-size: x-large;
+    border-radius: 10px;
+    margin: 10px;
+    border-bottom-width: 5px;
+    gap: 10px;
+
+}
+
+.buttondiv__div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 100%;
+    font-size: xx-large;
+    margin: 10px;
+    border-bottom-width: 5px;
+}
+
+.playlist {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+}
+
+.playlist__1 {
+    display: flex;  
+    width: 500px;
+    height: 100px;
+}
+
+.playlist__1__div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: #F74F26;
+    margin: 10px;
+}
+
+.playlist__1__span1 {
+    display: block;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.playlist__1__span2 {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+.playlist__2 {
+    display: flex;
+    width: 500px;
+    height: 100px;
+}
+
+.playlist__2__div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: #FF7EB3;
+    margin: 10px;
+}
+
+.playlist__2__span1 {
+    display: block;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.playlist__2__span2 {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+.playlist__3 {
+    display: flex;
+    width: 500px;
+    height: 100px;
+}
+
+.playlist__3__div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: #163FE1;
+    margin: 10px;
+}
+
+.playlist__3__span1 {
+    display: block;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.playlist__3__span2 {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}
+
+.playlist__4 {
+    display: flex;
+    width: 500px;
+    height: 100px;
+}
+
+.playlist__4__div {
+    display: flex;
+    flex-wrap: wrap;
+    width: 50px;
+    height: 50px;
+    border: solid 2px black;
+    border-radius: 10px;
+    background-color: #02BFA3;
+    margin: 10px;
+}
+
+.playlist__4__span1 {
+    display: block;
+    font-size: xx-large;
+    margin: 10px;
+}
+
+.playlist__4__span2 {
+    display: block;
+    font-size: small;
+    margin: 10px;
+}

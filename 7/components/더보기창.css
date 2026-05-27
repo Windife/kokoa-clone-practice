@@ -1,0 +1,95 @@
+.더보기__프로필 {
+   display: flex;
+   width: 100%;
+   height: 70px;
+   margin: 10px 0;
+   align-items: center;
+ }
+
+ .더보기__프로필 img {
+   width: 60px;
+   height: 60px;
+   border-radius: 20px;
+   margin-right: 20px;
+   border: 1px solid rgba(0, 0, 0, 1);
+ }
+
+ .더보기__프로필-내용 {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+   width: 100%;
+ }
+
+ .더보기__프로필-내용 span {
+   display: block;
+   font-size: 20px;
+   font-weight: 500;
+   margin-bottom: 10px;
+ }
+
+.더보기__프로필-내용 p {
+   display: block;
+   font-size: 14px;
+   color: rgba(0, 0, 0, 0.5);
+}
+
+.더보기__프로필-마크 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    color: tomato;
+    border: solid 1px tomato;
+    position: absolute;
+    left: 115px;
+    bottom: 0;
+}
+
+.더보기-아이콘, .더보기-제안__목록 {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   flex-wrap: wrap;
+   margin: 20px 0;
+   width: 100%;
+   height: 100%;
+}
+
+.더보기-아이콘__목록 {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   height: 70px;
+   margin: 20px 0;
+   position: relative;
+}
+
+.더보기-아이콘__목록 span {
+   text-align: center;
+   margin-top: 30px;
+}
+
+.더보기-제안 {
+  padding-top: 20px;
+  width: 100%;
+  border-top: solid 1px rgba(0, 0, 0, 0.3);
+}
+
+.더보기-아이콘__목록 > i {
+  position: relative;
+}
+
+.더보기-아이콘__목록-알림 {
+  display: flex;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: tomato;
+  border-radius: 50%;
+  color: white;
+  top: -5px;
+  right: 15px;
+}

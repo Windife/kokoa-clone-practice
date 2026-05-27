@@ -1,0 +1,131 @@
+ .상단-친구, .상단-더보기 {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 20px;
+   margin-top: 40px;
+ }
+
+.상단-친구__제목, .상단-더보기__제목 {
+   display: flex;
+   font-size: 35px;
+   font-weight: 400;
+ }
+
+ .상단-친구__아이콘, .상단-더보기__아이콘 {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 110px;
+   position: relative;
+ }
+  
+ .상단-채팅 {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 20px;
+   margin-top: 40px;
+ }
+
+ .상단-채팅__제목 {
+   display: flex;
+   font-size: 35px;
+   font-weight: 400;
+ }
+
+ .상단-채팅__아이콘 {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 150px;
+ }
+
+ .상단-찾기 {
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 20px;
+   margin-top: 40px;
+ }
+
+ .상단-찾기__제목 {
+   display: flex;
+   font-size: 35px;
+   font-weight: 400;
+ }
+
+ .상단-찾기__아이콘 {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 70px;
+   position: relative;
+ }
+
+.상단-찾기__아이콘-알림, .상단-더보기__아이콘-알림 {
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  background-color: tomato;
+  border-radius: 50%;
+  color: white;
+  top: -5px;
+  right: -5px;
+}
+
+.상단-세팅 {
+  display: flex;
+   width: 100%;
+   justify-content: space-between;
+   align-items: center;
+   margin: 20px 20px;
+   margin-top: 40px;
+}
+
+
+.상단-채팅창-세팅 {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 20px;
+}
+
+.상단-채팅창__제목 {
+  width: 100%;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.상단-채팅창__아이콘 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.상단-친구__아이콘 .fa-magnifying-glass:hover,
+.상단-친구__아이콘 .fa-music:hover,
+.상단-친구__아이콘 .fa-gear:hover,
+.상단-채팅__아이콘 .fa-magnifying-glass:hover,
+.상단-채팅__아이콘 .fa-comment:hover,
+.상단-채팅__아이콘 .fa-music:hover,
+.상단-채팅__아이콘 .fa-gear:hover,
+.상단-찾기__아이콘 .fa-magnifying-glass:hover,
+.상단-찾기__아이콘 .fa-gear:hover,
+.상단-더보기__아이콘 .fa-magnifying-glass:hover,
+.상단-더보기__아이콘 .fa-music:hover,
+.상단-더보기__아이콘 .fa-gear:hover,
+.상단-세팅 .fa-magnifying-glass:hover,
+.상단-채팅창__아이콘 .fa-magnifying-glass:hover,
+.상단-채팅창__아이콘 .fa-bars:hover {
+    will-change:auto;
+    animation: 좌우흔들기애니 1s linear infinite;
+}

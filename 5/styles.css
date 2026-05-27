@@ -1,0 +1,193 @@
+/* DONT DELETE THIS */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css');
+/* WRITE YOUR CODE BELOW */
+@import "reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Google+Sans:ital,opsz,wght@0,17..18,400..700;1,17..18,400..700&display=swap');
+
+
+body {
+    width: 400px;
+    justify-self: center;
+    border: solid 2px black;
+    font-family: "Google Sans", sans-serif;
+}
+
+h1 {
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    background-color: #FFC72D;
+    padding-bottom: 30px;
+}
+
+.input__search {
+    display: flex;
+    justify-self: center;
+    position: relative;
+    top: -25px;
+    width: 350px;
+    height: 50px;
+    border: solid 2px white;
+    border-radius: 50px;
+    box-shadow: 0px 2px 0px rgb(163, 163, 163);
+}
+
+.input__icon {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    top: -60px;
+    left: -40px;
+    opacity: 0.5;
+
+}
+
+.main__title {
+    display: flex;
+    justify-self: flex-start;
+    position: relative;
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    
+}
+
+.main__book {
+    display: flex;
+    margin: 15px;
+}
+
+.book__img {
+    display: flex;
+    width: 150px;
+    height: 180px;
+    border-radius: 10%;
+}
+
+.main__book2 {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+}
+
+.main__booktitle {
+    display: flex;
+    font-size: x-large;
+    font-weight: bold;
+    margin-left: 10px;
+
+}
+
+.main__genre {
+    display: flex;
+    font-size: small;
+    margin: 10px;
+    opacity: 0.5;
+}
+
+.starpoint {
+    display: flex;
+    margin-left: 10px;
+}
+
+.fa-star {
+    margin-right: 5px;
+}
+
+.main__category {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    gap: 20px
+}
+
+.main__category__btn {
+    border: solid 1px white;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.wishlist {
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    margin-top: 10px;
+
+}
+
+.wishlist__btn {
+    border: solid 1px white;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    background-color: #FFC72D;
+}
+
+.fa-bookmark {
+    display: flex;
+    position: relative;
+    left: -30px;
+}
+
+.booknow__btn {
+    display: flex;
+    justify-content: center;
+    margin-left: 20px;
+    color: white;
+    background-color: black;
+    width: 110px;
+    height: 40px;
+    border: solid 1px white;
+    border-radius: 5px;
+}
+
+.otherbooks__list {
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px;
+    gap: 20px;
+    overflow-x: scroll;
+}
+
+.otherbooksimg{
+    display:block;
+    width: auto;
+
+}
+
+.smallstar {
+    font-size: 7px;
+    margin-top: 5px;
+    margin:auto;
+}
+
+.pop_authors {
+    display: flex;
+    justify-content: flex-start;
+    margin: 15px;
+}
+
+.pop_authors__box {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+}
+
+.pop_authors__name {
+    font-size: x-large;
+    font-weight: bold;
+
+}
+
+.pop_authors__text {
+    margin-top: 10px;
+    opacity: 0.4;
+}

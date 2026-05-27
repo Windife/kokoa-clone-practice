@@ -1,0 +1,83 @@
+.내비창 {
+    position: fixed;
+    bottom: 0;
+    padding: 20px;
+    width: 100%;
+    background-color: #F9F9FA;
+    border-top: 1px solid rgba(0,0,0,0.3);
+}
+
+.내비창__목록 {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 25px;
+}
+
+.내비창__버튼 {
+    position: relative;
+}
+
+@keyframes 내비창_채팅-알림-애니 {
+    0% {
+       transform: none;
+    }
+    50%{ 
+        transform: translateY(-5px) rotateY(360deg);
+    }
+    100%{
+        transform: none;
+    }
+}
+
+.내비창__채팅-알림 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: tomato;
+    border-radius: 50%;
+    color: white;
+    top: -7px;
+    right: -7px;
+    animation: 내비창_채팅-알림-애니 3s ease-in-out infinite;
+    
+}
+
+.내비창__목록-알림 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: tomato;
+    border-radius: 50%;
+    color: white;
+    top: -2px;
+    right: -2px;
+}
+
+@keyframes 좌우흔들기애니 {
+    0% {
+        transform: none;
+    }
+    25% {
+        transform: rotateZ(-30deg);
+    }
+    50% {
+        transform: none;
+    }
+    75% {
+        transform: rotateZ(30deg);
+    }
+    100% {
+        transform: none;
+    }
+}
+
+.내비창__버튼:hover {
+    will-change:auto;
+    animation: 좌우흔들기애니 1s linear infinite;
+}
