@@ -50,10 +50,10 @@ img {
     flex-direction: column;
     align-items: center;
     margin-top : 200px;
+    margin-bottom: 0;
     width : 50vw;
     padding : 10px;
     color : black;
-   ;
 }
 
 .clock-title {
@@ -64,6 +64,10 @@ img {
 .clock-subtitle {
     font-size : 20px;
     padding : 10px;
+}
+
+.greeting {
+    margin-top: 0;
 }
 
 .login-form {
@@ -127,18 +131,24 @@ button:hover {
 
 .todo-list {
     list-style: none;
-    width : 50vw;
-    padding : 0;
+    display: flex;
+    flex-direction: column;
+    width : 430px;
+    margin: 10px 0;
+    padding: 10px;
 }
 .todo-list li {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    margin-bottom : 10px;
+    align-items: center;
+    margin: 5px 0;
 }
 
 .todo-list li input[type="checkbox"] {
     appearance: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 20px;
     height: 20px;
 }
@@ -157,6 +167,9 @@ button:hover {
 }
 
 .todo-list li button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin : 0;
     margin-left : 10px;
     width : 30px;
