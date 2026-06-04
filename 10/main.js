@@ -1,29 +1,20 @@
-const clockTitle = document.querySelector('.js-clock');
+const form = document.querySelector("form");
+const numberRange = document.querySelector(".number-range");
+const guessNumber = document.querySelector(".guess-number");
+const result = document.querySelector(".result");
+const winOrLose = document.querySelector(".winorlose");
 
-function waitChristmas() {
-  const nowDate = new Date();
-  const nowYear = nowDate.getFullYear();
-  let christmasDay = new Date(nowYear, 11, 25);
+function playBtnClick(event) {
+    event.preventDefault();
+    const machinNumber = Math.floor(Math.random() * (Number(numberRange.value) + 1));
+    const choseNumber = Number(guessNumber.value);
+    result.innerText = `You chose : ${choseNumber}, the machine chose : ${machinNumber}`;
 
-  if (nowDate > christmasDay) {
-    christmasDay = new Date(nowYear + 1, 11, 25);
-  }
+    if ( choseNumber === machinNumber) {
+        winOrLose.innerText = "You won!";
+    } else {
+        winOrLose.innerText = "You lost!";
+    }
+};
 
-  const date = christmasDay - nowDate;
-
-  const days = Math.floor(date / (1000 * 60 * 60 * 24));
-  const hours = String(Math.floor((date / (1000 * 60 * 60)) % 24)).padStart(
-    2,
-    '0'
-  );
-  const minutes = String(Math.floor((date / (1000 * 60)) % 60)).padStart(
-    2,
-    '0'
-  );
-  const seconds = String(Math.floor((date / 1000) % 60)).padStart(2, '0');
-
-  clockTitle.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-}
-
-waitChristmas();
-setInterval(waitChristmas, 1000);
+form.addEventListener("submit", playBtnClick);
