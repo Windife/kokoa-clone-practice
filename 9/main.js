@@ -1,20 +1,28 @@
-const form = document.querySelector("form");
-const numberRange = document.querySelector(".number-range");
-const guessNumber = document.querySelector(".guess-number");
-const result = document.querySelector(".result");
-const winOrLose = document.querySelector(".winorlose");
+const body = document.querySelector('body');
+const h1 = document.querySelector('h1');
+const p = document.querySelector('p');
 
-function playBtnClick(event) {
-    event.preventDefault();
-    const machinNumber = Math.floor(Math.random() * (Number(numberRange.value) + 1));
-    const choseNumber = Number(guessNumber.value);
-    result.innerText = `You chose : ${choseNumber}, the machine chose : ${machinNumber}`;
+function backGroundColorChange() {
+  const windowSize = innerWidth;
+  if (500 > windowSize) {
+    h1.style.color = 'rgb(255,255,255)';
+    p.style.color = 'rgb(255,255,255)';
+    body.style.backgroundColor = 'rgb(0,0,255)';
+  } else if (1000 > windowSize && windowSize >= 500) {
+    h1.style.color = 'rgb(255,255,255)';
+    p.style.color = 'rgb(255,255,255)';
+    body.style.backgroundColor = 'rgb(255,0,255)';
+  } else {
+    h1.style.color = 'rgb(0,0,0)';
+    p.style.color = 'rgb(0,0,0)';
+    body.style.backgroundColor = 'rgb(255,255,0)';
+  }
+}
 
-    if ( choseNumber === machinNumber) {
-        winOrLose.innerText = "You won!";
-    } else {
-        winOrLose.innerText = "You lost!";
-    }
-};
+function windowWidthViewer() {
+  const windowWidth = innerWidth;
+  p.innerText = 'Your window is ' + windowWidth + 'px';
+}
 
-form.addEventListener("submit", playBtnClick);
+window.addEventListener('resize', windowWidthViewer);
+window.addEventListener('resize', backGroundColorChange);
