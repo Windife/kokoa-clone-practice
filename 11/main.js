@@ -1,36 +1,29 @@
-const colors = [
-  '#ef5777',
-  '#575fcf',
-  '#4bcffa',
-  '#34e7e4',
-  '#0be881',
-  '#f53b57',
-  '#3c40c6',
-  '#0fbcf9',
-  '#00d8d6',
-  '#05c46b',
-  '#ffc048',
-  '#ffdd59',
-  '#ff5e57',
-  '#d2dae2',
-  '#485460',
-  '#ffa801',
-  '#ffd32a',
-  '#ff3f34',
-];
+const clockTitle = document.querySelector('.js-clock');
 
-const body = document.querySelector('body');
-const button = document.querySelector('button');
+function waitChristmas() {
+  const nowDate = new Date();
+  const nowYear = nowDate.getFullYear();
+  let christmasDay = new Date(nowYear, 11, 25);
 
-function changeBackgroundColor() {
-  const color1 = colors[Math.floor(Math.random() * colors.length)];
-  let color2 = colors[Math.floor(Math.random() * colors.length)];
-
-  while (color1 === color2) {
-    color2 = colors[Math.floor(Math.random() * colors.length)];
+  if (nowDate > christmasDay) {
+    christmasDay = new Date(nowYear + 1, 11, 25);
   }
 
-  body.style.background = `linear-gradient(to right, ${color1}, ${color2})`;
+  const date = christmasDay - nowDate;
+
+  const days = Math.floor(date / (1000 * 60 * 60 * 24));
+  const hours = String(Math.floor((date / (1000 * 60 * 60)) % 24)).padStart(
+    2,
+    '0'
+  );
+  const minutes = String(Math.floor((date / (1000 * 60)) % 60)).padStart(
+    2,
+    '0'
+  );
+  const seconds = String(Math.floor((date / 1000) % 60)).padStart(2, '0');
+
+  clockTitle.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 }
 
-button.addEventListener('click', changeBackgroundColor);
+waitChristmas();
+setInterval(waitChristmas, 1000);
