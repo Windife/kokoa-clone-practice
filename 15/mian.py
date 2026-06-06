@@ -29,5 +29,8 @@ while playing:
         else:
             result = a / b
             print(f"{a} {operation} {b} = {result}")
+    else:
+        print("잘못된 입력입니다. 종료합니다.")
+        playing = False                
 
 # /YOUR CODE
