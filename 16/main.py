@@ -28,7 +28,7 @@ for movie in movie_ids:
         top_title["title"] = data["title"]
         top_title["vote_average"] = data["vote_average"]
     
-    if data["vote_average"] > 7:
+    if data["vote_average"] >= 7:
         highly_rated_count = highly_rated_count + 1      
 
 print(f"Top title is {top_title["title"]}")
