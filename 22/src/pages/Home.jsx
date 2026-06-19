@@ -27,7 +27,6 @@ function Home() {
               <Link to={`/movie/${movie.id}`}>
                 <img src={`${movie.thumbnail.path}.${movie.thumbnail.extension}`} alt='' />
                 <h3>{movie.name}</h3>
-                <h4>{movie.resourceURI}</h4>
               </Link>
             </li>
           ))

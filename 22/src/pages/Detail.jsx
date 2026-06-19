@@ -26,7 +26,7 @@ function Detail() {
         <div>
           <h3>{movie.name}</h3>
           <img src={`${movie.thumbnail.path}.${movie.thumbnail.extension}`} alt='' />
-          <p>{movie.description}</p>
+          <p>{movie.description ? movie.description : "설명 없음"}</p>
           <h4><a href={movie.resourceURI} target='_blank' rel="noopener noreferrer">
             {movie.resourceURI}</a></h4>
         </div>
