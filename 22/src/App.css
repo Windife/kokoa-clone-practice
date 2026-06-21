@@ -6,7 +6,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   background: #e62429;
-  color: #1a1a1a;
+  color: white;
 }
 
 h1 {
@@ -32,15 +32,17 @@ ul {
 }
 
 ul :hover {
-  background-color: pink;
+  background-color: #ffd700;
+  color: black;
 }
 
 li {
   list-style: none;
-  background: white;
+  background: black;
   border-radius: 12px;
   padding: 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
 }
 
 li img {
@@ -67,7 +69,7 @@ li h3 {
   padding: 1%;
   width: 50%;
   border-radius: 12px;
-  background-color: white;
+  background-color: black;
 }
 
 .detail button {
@@ -92,16 +94,4 @@ li h3 {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-}
-
-.detail h3 {
-  color: white;
-}
-
-.detail p {
-  color: white;
-}
-
-.detail Link {
-  color: white;
 }
