@@ -29,8 +29,7 @@ function Home() {
                 <h3>{comic.name}</h3>
               </Link>
             </li>
-          ))
-        )}
+          )))}
       </ul>
     </div>
   );

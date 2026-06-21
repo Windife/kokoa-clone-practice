@@ -34,7 +34,7 @@ function Detail() {
           <h1>{comic.name}</h1>
           <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt='' />
           <h3>Description</h3>
-          <p>{comic.description ? comic.description : "설명 없음"}</p>
+          <p>{comic.description ? comic.description : "No Description"}</p>
           
           <h3>
               <a href={comic.comics.collectionURI} target='_blank' rel='noopener noreferrer'>Comics (Total : {comic.comics.available})</a >
