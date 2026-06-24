@@ -4,6 +4,12 @@
   flex-direction: column;
 }
 
+.history {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 h1 {
   color: black;
   font-size: 50px;
@@ -37,10 +43,11 @@ button:hover {
 }
 
 .progress-container {
-  width: 100%;
+  width: 500px;
   height: 20px;
   background-color: #eee;
   border-radius: 10px;
+  border: 1px solid black;
   overflow: hidden;
   margin: 10px 0;
 }
@@ -49,5 +56,52 @@ button:hover {
   height: 100%;
   background-color: #4caf50;
   width: 0%;
-  transition: width 0.3s ease;
+  transition: width 0.1s linear;
+}
+
+.progress-bar.no-animate {
+  background-color: red;
+  transition: none;
+}
+
+.flash_work {
+  animation: flash_work 0.5s infinite alternate;
+}
+@keyframes flash_work {
+  0% {
+    background-color: rgba(0, 255, 0, 0%);
+  }
+  25% {
+    background-color: rgba(0, 255, 0, 50%);
+  }
+  50% {
+    background-color: rgba(0, 255, 0, 100%);
+  }
+  75% {
+    background-color: rgba(0, 255, 0, 50%);
+  }
+  100% {
+    background-color: rgba(0, 255, 0, 0%);
+  }
+}
+
+.flash_break {
+  animation: flash_break 0.3s infinite alternate;
+}
+@keyframes flash_break {
+  0% {
+    background-color: rgba(255, 0, 0, 0%);
+  }
+  25% {
+    background-color: rgba(255, 0, 0, 50%);
+  }
+  50% {
+    background-color: rgba(255, 0, 0, 100%);
+  }
+  75% {
+    background-color: rgba(255, 0, 0, 50%);
+  }
+  100% {
+    background-color: rgba(255, 0, 0, 0%);
+  }
 }
