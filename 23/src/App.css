@@ -10,6 +10,12 @@
   flex-direction: column;
 }
 
+.dashboard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 h1 {
   color: black;
   font-size: 50px;

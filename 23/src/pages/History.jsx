@@ -1,47 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 
 function History() {
   const [history, setHistory] = useState([]);
   const [filterSubject, setFilterSubject] = useState("");
-  const now = new Date();
   const [filterRange, setFilterRange] = useState("all");
-  const day = now.getDay();
-  const diff = day === 0 ? 6 : day - 1;
-  const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff);
-  const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
   const [subjects, setSubjects] = useState(() => {
     return JSON.parse(localStorage.getItem("subjects") || "[]");
   });
   const [showSubjects, setShowSubjects] = useState(false);
 
-  const filteredHistory = history.filter(item => {
-    const date = new Date(item.finishedAt);
+  const filteredHistory = useMemo(() => {
+    const now = new Date();
+    const day = now.getDay();
+    const diff = day === 0 ? 6 : day - 1;
+    const startOfWeek = new Date(now.getFullYear(), now.getMonth(), now.getDate() - diff);
+    const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
 
-    if (filterSubject && item.subject !== filterSubject) {
-      return false;
-    }
+    return history.filter(item => {
+      const date = new Date(item.finishedAt);
 
-    if (filterRange === "week") {
-      return date >= startOfWeek;
-    }
+      if (filterSubject && item.subject !== filterSubject) {
+        return false;
+      }
 
-    if (filterRange === "month") {
-      return date >= startOfMonth;
-    }
+      if (filterRange === "week") {
+        return date >= startOfWeek;
+      }
 
-    return true;
-  })
+      if (filterRange === "month") {
+        return date >= startOfMonth;
+      }
 
-  useEffect(() => {
-    const saved = localStorage.getItem("history");
-    if (saved) {
-      setHistory(JSON.parse(saved));
-    }
-  }, []);
+      return true;
+  });
+},[history, filterSubject, filterRange]);
 
-  const handleDelete = (finishedAt) => {
-    const newHistory = history.filter(item => item.finishedAt !== finishedAt);
+const handleDelete = (id) => {
+    const newHistory = history.filter(item => item.id !== id);
     setHistory(newHistory);
     localStorage.setItem("history", JSON.stringify(newHistory));
   };
@@ -61,14 +57,24 @@ function History() {
     setSubjects([]);
     localStorage.removeItem("subjects");
   }
+
+  useEffect(() => {
+    const saved = localStorage.getItem("history");
+    if (saved) {
+      setHistory(JSON.parse(saved));
+    }
+  }, []);
    
   return (
     <div className='history'>
+      <nav>
+            <Link to="/" className='link'>Timer</Link>
+            <Link to="/Dashboard" className='link'>Dashboard</Link>
+        </nav>
       <h1>History</h1>
 
       <select value={filterSubject} onChange={e => setFilterSubject(e.target.value)}>
         <option value="">전체 주제</option>
-        <option value="목표">목표</option>
         {subjects.map((s, idx) => (
           <option key={idx} value={s}>{s}</option>
         ))}
@@ -78,6 +84,7 @@ function History() {
 
       {showSubjects && (
         <div className='subjects-popup'>
+          {subjects.length === 0 && <p>등록된 주제가 없습니다.</p>}
           {subjects.length > 0 && (
             <button onClick={handleClearSubjects}>전체삭제</button>
           )}
@@ -91,8 +98,6 @@ function History() {
           </ul>
         </div>
       )}
-
-        
 
       {history.length > 0 && (
         <button onClick={handleClearAll}>전체 삭제</button>
@@ -110,14 +115,18 @@ function History() {
         ) : (
           filteredHistory.map((item, idx) => (
             <li key={idx}>
-              <strong>{item.subject}</strong> - {item.minutes}분 ({item.finishedAt})
-            <button onClick={() => handleDelete(item.finishedAt)}>삭제</button>
+              <strong>{item.mode === "work" ? `${item.subject}` : "휴식"}</strong> - {item.minutes}분 ({new Date(item.finishedAt).toLocaleString("ko-KR", {
+                year : "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit"
+              })}) 완료
+            <button onClick={() => handleDelete(item.id)}>삭제</button>
           </li>
          ))
        )}
       </ul>
-      <Link to="/" className='link'>Timer</Link>
-      <Link to="/Dashboard" className='link'>Dashboard</Link>
     </div>
   );
 }
