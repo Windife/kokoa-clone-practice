@@ -5,9 +5,7 @@ function History() {
   const [history, setHistory] = useState([]);
   const [filterSubject, setFilterSubject] = useState("");
   const [filterRange, setFilterRange] = useState("all");
-  const [subjects, setSubjects] = useState(() => {
-    return JSON.parse(localStorage.getItem("subjects") || "[]");
-  });
+  const [subjects, setSubjects] = useState([]);
   const [showSubjects, setShowSubjects] = useState(false);
 
   const filteredHistory = useMemo(() => {
@@ -20,7 +18,7 @@ function History() {
     return history.filter(item => {
       const date = new Date(item.finishedAt);
 
-      if (filterSubject && item.subject !== filterSubject) {
+      if (filterSubject && item.subject_name !== filterSubject) {
         return false;
       }
 
@@ -37,32 +35,39 @@ function History() {
 },[history, filterSubject, filterRange]);
 
 const handleDelete = (id) => {
-    const newHistory = history.filter(item => item.id !== id);
-    setHistory(newHistory);
-    localStorage.setItem("history", JSON.stringify(newHistory));
+    fetch(`http://127.0.0.1:5000/sessions/${id}`, { method: "DELETE"})
+    .then(() => setHistory(history.filter(item => item.id !== id)))
+    .catch(() => alert("삭제 실패"));
   };
 
   const handleDeleteSubject = (subjectToDelete) => {
-    const updated = subjects.filter(s => s !== subjectToDelete);
-    setSubjects(updated);
-    localStorage.setItem("subjects", JSON.stringify(updated));
+    fetch(`http://127.0.0.1:5000/subjects/${subjectToDelete.id}`, { method: "DELETE"})
+    .then(() => setSubjects(prev => prev.filter(s => s.id !== subjectToDelete.id)))
+    .catch(() => alert("주제 삭제 실패"));
 };
 
   const handleClearAll = () => {
-    setHistory([]);
-    localStorage.removeItem("history");
+    fetch("http://127.0.0.1:5000/sessions", { method: "DELETE"})
+    .then(() => setHistory([]))
+    .catch(() => alert("전체 삭제 실패"));
   };
 
   const handleClearSubjects = () => {
-    setSubjects([]);
-    localStorage.removeItem("subjects");
+    fetch("http://127.0.0.1:5000/subjects", { method: "DELETE" })
+    .then(() => setSubjects([]))
+    .catch(() => alert("주제 전체 삭제 실패"));
   }
 
   useEffect(() => {
-    const saved = localStorage.getItem("history");
-    if (saved) {
-      setHistory(JSON.parse(saved));
-    }
+    fetch("http://127.0.0.1:5000/sessions")
+    .then(res => res.json())
+    .then(data => setHistory(data))
+    .catch(() => alert("기록 불러오기 실패"));
+
+    fetch("http://127.0.0.1:5000/subjects")
+    .then(res => res.json())
+    .then(data => setSubjects(data))
+    .catch(() => alert("주제 불러오기 실패"));
   }, []);
    
   return (
@@ -75,8 +80,8 @@ const handleDelete = (id) => {
 
       <select value={filterSubject} onChange={e => setFilterSubject(e.target.value)}>
         <option value="">전체 주제</option>
-        {subjects.map((s, idx) => (
-          <option key={idx} value={s}>{s}</option>
+        {subjects.map((s) => (
+          <option key={s.id} value={s.name}>{s.name}</option>
         ))}
       </select>
 
@@ -89,9 +94,9 @@ const handleDelete = (id) => {
             <button onClick={handleClearSubjects}>전체삭제</button>
           )}
           <ul>
-            {subjects.map((s, idx) => (
-              <li key={idx}>
-                {s}
+            {subjects.map((s) => (
+              <li key={s.id}>
+                {s.name}
                 <button onClick={() => handleDeleteSubject(s)}>삭제</button>
               </li>
             ))}
@@ -113,9 +118,9 @@ const handleDelete = (id) => {
        {filteredHistory.length === 0 ? (
           <li>조건에 맞는 기록이 없습니다.</li>
         ) : (
-          filteredHistory.map((item, idx) => (
-            <li key={idx}>
-              <strong>{item.mode === "work" ? `${item.subject}` : "휴식"}</strong> - {item.minutes}분 ({new Date(item.finishedAt).toLocaleString("ko-KR", {
+          filteredHistory.map((item) => (
+            <li key={item.id}>
+              <strong>{item.mode === "work" ? `${item.subject_name}` : "휴식"}</strong> - {item.duration}분 ({new Date(item.finishedAt).toLocaleString("ko-KR", {
                 year : "numeric",
                 month: "2-digit",
                 day: "2-digit",

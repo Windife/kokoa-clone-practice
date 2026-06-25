@@ -22,25 +22,30 @@ function Timer() {
     const BREAK_TIME = breakMinutes * 60 * 1000;
 
     const saveRecord = useCallback((mode, minutes) => {
+        const selectedSubject = subjects.find(s => s.name === subject);
+
         const record = {
-            id: Date.now(),
-            subject,
-            mode,
-            minutes,
+            subject_id: selectedSubject ? selectedSubject.id : Date.now(),
+            subject_name: subject,
+            duration: minutes,
+            mode: mode,
             finishedAt : new Date().toISOString()
         };
-        const saved = JSON.parse(localStorage.getItem("history") || "[]");
-        const newHistory = [...saved, record];
-        localStorage.setItem("history", JSON.stringify(newHistory));
-    }, [subject]);
+
+        fetch("http://127.0.0.1:5000/sessions", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify(record)
+        }).catch(() => alert("세션 저장 실패"));
+    }, [subject, subjects]);
 
     const handleStart = () => {
         setMode("work");
         setRunning(true);
         setAnimate(true);
 
-        if (!subjects.includes(subject)) {
-            const updated = [...subjects, subject];
+        if (!subjects.some(s => s.name === subject)) {
+            const updated = [...subjects, { id: Date.now(), name: subject}];
             setSubjects(updated);
             localStorage.setItem("subjects", JSON.stringify(updated));
         };
@@ -160,7 +165,7 @@ function Timer() {
             {subjectError && <p style={{color:"red"}}>{subjectError}</p>}
         </div>
 
-        <div className='clock'>{format(hours)} : {format(minutes)} : {format(seconds)}</div>
+        <div className='clock'>{hours > 0 ? `${format(hours)} : ${format(minutes)} : ${format(seconds)}` : `${format(minutes)} : ${format(seconds)}`}</div>
 
         <div>
             <label>목표 시간(분) : </label>

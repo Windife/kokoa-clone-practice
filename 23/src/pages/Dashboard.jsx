@@ -14,6 +14,7 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 function Dashboard() {
   const [history, setHistory] = useState([]);
+  const [subjects, setSubjects] = useState([]);
   const now = new Date();
   const day = now.getDay();
   const diff = day === 0 ? 6 : day - 1;
@@ -22,35 +23,35 @@ function Dashboard() {
     h => h.mode === "work" && new Date(h.finishedAt) >= startOfWeek).length;
 
   useEffect(() => {
-    const saved = localStorage.getItem("history");
-    if (saved) {
-      setHistory(JSON.parse(saved));
-    }
+    fetch("http://127.0.0.1:5000/sessions")
+    .then(res => res.json())
+    .then(data => setHistory(data))
+    .catch(() => alert("기록 불러오기 실패"));
+
+    fetch("http://127.0.0.1:5000/subjects")
+    .then(res => res.json())
+    .then(data => setSubjects(data))
+    .catch(() => alert("주제 불러오기 실패"));
   },[]);
 
-  const totalMinutes = history.filter(h => h.mode === "work").reduce((sum, h) => sum + h.minutes, 0);
+  const totalMinutes = history.filter(h => h.mode === "work").reduce((sum, h) => sum + h.duration, 0);
 
   const subjectData = {};
   history.filter(h => h.mode === "work").forEach(h => {
-    subjectData[h.subject] = (subjectData[h.subject] || 0) + h.minutes;
+    subjectData[h.subject_name] = (subjectData[h.subject_name] || 0) + h.duration;
   });
 
   const weekData = Array(7).fill(0);
-  history.filter(h => h.mode === "work").forEach(h => {
-    const d = new Date(h.finishedAt).getDay();
-    weekData[d] += h.minutes;
-  });
-
   const weekSessions = Array(7).fill(0);
   history.filter(h => h.mode === "work").forEach(h => {
     const d = new Date(h.finishedAt).getDay();
+    weekData[d] += h.duration;
     weekSessions[d] += 1;
   });
 
   const reorderWeekData = (arr) => [...arr.slice(1), arr[0]];
   const reorderedWeekData = reorderWeekData(weekData);
   const reorderedWeekSessions = reorderWeekData(weekSessions);
-
 
   const getStreak = () => {
     const validHistory = history.filter(h => h.finishedAt && !isNaN(new Date(h.finishedAt)));
@@ -90,7 +91,6 @@ function Dashboard() {
     for (let i = 1; i < uniqueDates.length; i++) {
       const prev = new Date(uniqueDates[i - 1]);
       const curr = new Date(uniqueDates[i]);
-
       const diffDays = (curr - prev) / (1000 * 60 * 60 * 24);
 
       if (diffDays === 1) {
@@ -107,7 +107,6 @@ function Dashboard() {
     if (uniqueDates.length > 0) {
       maxStreak = Math.max(maxStreak, currentStreak);
     }
-    
     return maxStreak;
   };
 
@@ -153,7 +152,7 @@ function Dashboard() {
         }}
         options={{
           scales: {
-            y1: { type: 'linear', position:'left', title:{ display:true, text:'시간(분)'}, suggestedMax: Math.max(...reorderedWeekSessions) + 2 },
+            y1: { type: 'linear', position:'left', title:{ display:true, text:'시간(분)'}, suggestedMax: Math.max(...reorderedWeekData) + 2 },
             y2: { type: 'linear', position:'right', title:{ display:true, text:'주제 수'}, grid:{ drawOnChartArea:false }, suggestedMax: Math.max(...reorderedWeekSessions) + 2 }
           }
         }} />
