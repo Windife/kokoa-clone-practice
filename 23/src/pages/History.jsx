@@ -30,6 +30,10 @@ function History() {
         return date >= startOfMonth;
       }
 
+      if (item.mode !== "work") {
+        return false;
+      }
+
       return true;
   });
 },[history, filterSubject, filterRange]);
@@ -40,17 +44,17 @@ const handleDelete = (id) => {
     .catch(() => alert("삭제 실패"));
   };
 
-  const handleDeleteSubject = (subjectToDelete) => {
-    fetch(`http://127.0.0.1:5000/subjects/${subjectToDelete.id}`, { method: "DELETE"})
-    .then(() => setSubjects(prev => prev.filter(s => s.id !== subjectToDelete.id)))
-    .catch(() => alert("주제 삭제 실패"));
-};
-
-  const handleClearAll = () => {
+const handleClearAll = () => {
     fetch("http://127.0.0.1:5000/sessions", { method: "DELETE"})
     .then(() => setHistory([]))
     .catch(() => alert("전체 삭제 실패"));
   };
+
+  const handleDeleteSubject = (subjectToDelete) => {
+    fetch(`http://127.0.0.1:5000/sessions/${subjectToDelete.id}`, { method: "DELETE"})
+    .then(() => setSubjects(prev => prev.filter(s => s.id !== subjectToDelete.id)))
+    .catch(() => alert("주제 삭제 실패"));
+};
 
   const handleClearSubjects = () => {
     fetch("http://127.0.0.1:5000/subjects", { method: "DELETE" })
@@ -69,6 +73,8 @@ const handleDelete = (id) => {
     .then(data => setSubjects(data))
     .catch(() => alert("주제 불러오기 실패"));
   }, []);
+
+  const subjectOptions = [...new Set(history.map(h => h.subject_name))].sort();
    
   return (
     <div className='history'>
@@ -80,8 +86,8 @@ const handleDelete = (id) => {
 
       <select value={filterSubject} onChange={e => setFilterSubject(e.target.value)}>
         <option value="">전체 주제</option>
-        {subjects.map((s) => (
-          <option key={s.id} value={s.name}>{s.name}</option>
+        {subjectOptions.map((name, idx) => (
+          <option key={idx} value={name}>{name}</option>
         ))}
       </select>
 

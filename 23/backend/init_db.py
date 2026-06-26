@@ -1,30 +1,29 @@
 import sqlite3
 
-DB_FILE = "db.sqlite"
+DB_NAME = "pomodoro.db"
 
 def init_db():
-    conn = sqlite3.connect(DB_FILE)
+    conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
 
-    # 과목 테이블
-    c.execute('''CREATE TABLE IF NOT EXISTS subjects (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
-        name TEXT UNIQUE
-    )''')
-
-    # 세션 테이블
-    c.execute('''CREATE TABLE IF NOT EXISTS sessions (
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS subjects (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              name TEXT NOT NULL UNIQUE
+    )
+    """)
+    
+    c.execute("""
+    CREATE TABLE IF NOT EXISTS sessions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         subject_id INTEGER,
         subject_name TEXT,
         duration INTEGER,
         mode TEXT,
-        created_at TEXT
-    )''')
+        finishedAt TEXT,
+        FOREIGN KEY(subject_id) REFERENCES subjects(id)
+    )
+    """)
 
     conn.commit()
     conn.close()
-    print("DB 초기화 완료!")
-
-if __name__ == "__main__":
-    init_db()

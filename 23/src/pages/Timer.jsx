@@ -25,7 +25,7 @@ function Timer() {
         const selectedSubject = subjects.find(s => s.name === subject);
 
         const record = {
-            subject_id: selectedSubject ? selectedSubject.id : Date.now(),
+            subject_id: selectedSubject ? selectedSubject.id : null,
             subject_name: subject,
             duration: minutes,
             mode: mode,
@@ -39,16 +39,27 @@ function Timer() {
         }).catch(() => alert("세션 저장 실패"));
     }, [subject, subjects]);
 
+    const saveSubject = useCallback((name) => {
+        fetch("http://127.0.0.1:5000/subjects", {
+            method: "POST",
+            headers: { "Content-Type": "application/json"},
+            body: JSON.stringify({name})
+        })
+        .then(res => res.json())
+        .then(newSubject => {
+            setSubjects(prev => {
+                const updated = [...prev.filter(s => s.name !== newSubject.name), newSubject];
+                localStorage.setItem("subjects", JSON.stringify(updated));
+                return updated;
+            });
+        })
+        .catch(() => alert("주제 저장 실패"));
+    }, [])
+
     const handleStart = () => {
         setMode("work");
         setRunning(true);
         setAnimate(true);
-
-        if (!subjects.some(s => s.name === subject)) {
-            const updated = [...subjects, { id: Date.now(), name: subject}];
-            setSubjects(updated);
-            localStorage.setItem("subjects", JSON.stringify(updated));
-        };
     }
 
     const handleStop = () => {
@@ -90,6 +101,7 @@ function Timer() {
 
         if (!Number.isInteger(value) || value <= 0) {
             setBreakError("휴식 시간은 1이상의 정수여야 합니다.");
+            setBreakMinutes(value);
         } else {
             setBreakError("");
         }
@@ -118,6 +130,7 @@ function Timer() {
         if (mode === "work" && time >= WORK_TIME && running) {
             setRunning(false);
             saveRecord("work",workMinutes);
+            saveSubject(subject);
 
             document.body.classList.add("flash_work");
             setTimeout(() => {
@@ -131,6 +144,7 @@ function Timer() {
         } else if (mode === "break" && time >= BREAK_TIME && running) {
             setRunning(false);
             saveRecord("break", breakMinutes)
+            saveSubject(subject)
 
             document.body.classList.add("flash_break");
             setTimeout(() => {
@@ -141,7 +155,7 @@ function Timer() {
             setTime(0);
             setRunning(true);
         }
-    }, [time, mode, running, WORK_TIME, BREAK_TIME, workMinutes, breakMinutes, saveRecord]);
+    }, [time, mode, running, WORK_TIME, BREAK_TIME, workMinutes, breakMinutes, saveRecord, saveSubject]);
 
     useEffect(() => {
         const maxTime = mode === "work" ? WORK_TIME : BREAK_TIME;
