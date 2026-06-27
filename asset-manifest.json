@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/kokoa-clone-practice/static/css/main.1e8d0e61.css",
-    "main.js": "/kokoa-clone-practice/static/js/main.71547339.js",
+    "main.js": "/kokoa-clone-practice/static/js/main.498b5c2a.js",
     "index.html": "/kokoa-clone-practice/index.html",
     "main.1e8d0e61.css.map": "/kokoa-clone-practice/static/css/main.1e8d0e61.css.map",
-    "main.71547339.js.map": "/kokoa-clone-practice/static/js/main.71547339.js.map"
+    "main.498b5c2a.js.map": "/kokoa-clone-practice/static/js/main.498b5c2a.js.map"
   },
   "entrypoints": [
     "static/css/main.1e8d0e61.css",
-    "static/js/main.71547339.js"
+    "static/js/main.498b5c2a.js"
   ]
 }
